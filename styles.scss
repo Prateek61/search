@@ -1,0 +1,294 @@
+$themes: 'dark', 'light';
+
+$dark-bg: #121212;
+$dark-theme-text: #bdc1c6;
+
+@mixin bg-color ($theme) {
+  @if $theme == 'dark' {
+    background-color: #121212;
+  } @else {
+    background-color: #ffffff;
+  }
+}
+
+@mixin  color ($theme) {
+  @if $theme == 'dark' {
+    color: #bdc1c6;
+  } @else {
+    color: #121212;
+  }
+}
+
+@mixin elevate-bg ($theme ,$alpha) {
+  @if $theme == 'dark' {
+    background-color: rgba(255, 255, 255, $alpha);
+  } @else {
+    background-color: rgba(0, 0, 0, $alpha);
+  }
+}
+
+@mixin elevate-border ($theme ,$alpha) {
+  @if $theme == 'dark' {
+    border-color: rgba(255, 255, 255, $alpha);
+  } @else {
+    border-color: rgba(0, 0, 0, $alpha);
+  }
+}
+
+@mixin title-text {
+  font-size: 90px;
+  font-weight: 700;
+}
+
+.body {
+  font-family: arial, sans-serif;
+}
+
+.g-1 {
+  min-height: fit-content;
+  height: 5vh;
+}
+
+.g-2 {
+  min-height: fit-content;
+  height: 30vh;
+}
+
+.g-3 {
+  min-height: fit-content;
+  height: 55vh;
+}
+
+.form {
+  min-width: 300px;
+  max-width: 600px;
+  width: 60vw;
+  margin: 10px auto;
+}
+
+.btn {
+  min-height: 2rem;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  border: 0.25px solid;
+  @include elevate-border('light', 0.0);
+
+  &:hover {
+    cursor: pointer;
+    border: 0.25px solid;
+  }
+}
+
+.btn-group {
+  width: fit-content;
+  margin: 25px auto;
+}
+
+.search-bar {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 25px;
+  min-height: 2rem;
+  font-size: 1rem;
+  padding: 0.75em 20px;
+  border: 0.25px solid;
+
+  &:hover, &:focus {
+    outline: none;
+  }
+}
+
+.title {
+  position: relative;
+  &>span {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+  }
+}
+
+.title-text-index {
+  @include title-text();
+  margin-bottom: 25px;
+  color: whitesmoke;
+}
+
+.title-text-image {
+  @include title-text();
+  position: relative;
+  width: fit-content;
+  margin: 25px auto;
+
+  span {
+    margin: 0;
+  }
+
+  .title-g {
+    color: #4285F4;
+  }
+  .title-o1 {
+    color: #DB4437;
+  }
+  .title-o2 {
+    color: #F4B400;
+  }
+  .title-g2 {
+    color: #4285F4;
+  }
+  .title-l {
+    color: #0F9D58;
+  }
+  .title-e {
+    color: #DB4437;
+  }
+  .text-images {
+    font-size: 20px;
+    color: #4285F4;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.links {
+  text-align: right;
+}
+
+a {
+  margin-left: 20px;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@each $theme in $themes {
+  .#{$theme} {
+    @include bg-color($theme);
+    @include color($theme);
+
+    input {
+      @include elevate-bg($theme, 0.05);
+      @include color($theme);
+    }
+
+    .btn {
+      @include elevate-bg($theme, 0.14);
+      @include color($theme);
+      
+      :hover {
+        @include elevate-border($theme, 0.40)
+      }
+    }
+
+    .search-bar {
+      @include elevate-border($theme, 0.40);
+
+      &:hover, &:focus {
+        @include elevate-bg($theme, 0.14);
+        @include elevate-border($theme, 0.00);
+      }
+    }
+
+    a {
+      @include color($theme);
+    }
+  }
+}
+
+.title-advance {
+  display: inline-block;
+  width: 50%;
+}
+
+.links-advance {
+  display: inline-block;
+  position: relative;
+  right: 5px;
+  text-align: right;
+  width: 50%;
+}
+
+.title-advance-google {
+  padding-left: 20px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.title-advance-advancesearch {
+  padding-left: 50px;
+  padding-top: 30px;
+  font-size: 25px;
+  font-weight: 500;
+  color: #f28b82;
+}
+
+hr {
+  height: 0.25px;
+  @include elevate-bg('dark', 0.16);
+  border: 0.25px solid;
+  @include elevate-border('dark', 0.16);
+  border: none;
+}
+
+.content {
+  margin-top: 75px;
+}
+
+.advance-form {
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.section {
+  min-width: 300px;
+  max-width: 800px;
+  width: 60vw;
+  margin-top: 20px;
+  .text {
+    display: inline-block;
+    font-size: 16px;
+    width: 40%;
+  }
+
+  .input-field {
+    display: inline-block;
+    width: 60%;
+  }
+}
+
+.field {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #bdc1c6;
+  font-size: 16px;
+  padding: 5px 10px;
+
+  &:focus {
+    border-color: #4285F4;
+    outline: none;
+  }
+}
+
+.btn-section {
+  text-align: right;
+}
+
+.btn-blue {
+  background-color: rgb(15, 65, 150);
+  padding: 5px 10px;
+  color: whitesmoke;
+
+  &:hover {
+    outline: none;
+    background-color: rgb(30, 144, 205);
+  }
+}
+
+.advance-form-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: whitesmoke;
+}
